@@ -9,7 +9,7 @@
 		chainId: null,
 		contract: null
 	};
-	const contractAddr = '0xB6aC9165d7c9752E7C7D09b5282FBdb5EfE6e308';
+	const contractAddr = '0x68043cACEe43f8284D05a0C5D8663D5D44172367';
 </script>
 
 {#if !web3Props.account}

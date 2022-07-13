@@ -8,6 +8,7 @@
 		chainId: null,
 		contract: null
 	};
+	console.log(web3Props);
 	async function claimYourSpot() {
 		let spotTXN = await web3Props.contract.claimYourSpot();
 		waiting = true;
