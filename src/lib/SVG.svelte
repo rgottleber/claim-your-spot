@@ -2,15 +2,18 @@
 	import { ethers } from 'ethers';
 	import { onMount } from 'svelte';
 
-	const apiKey = import.meta.env.VITE_RINKEBY_API_KEY;
+	// const apiKey = import.meta.env.VITE_RINKEBY_API_KEY;
 	const colors = ['#3F5ACB', '#EA5D65', '#F0CD49', '#FFFFFF'];
 	import SPOTSAbi from '../contracts/SPOTS.json';
 	export let width;
 	export let height;
-	const contractAddr = '0xB6aC9165d7c9752E7C7D09b5282FBdb5EfE6e308';
+	// const contractAddr = '0xB6aC9165d7c9752E7C7D09b5282FBdb5EfE6e308';
+	const contractAddr = '0x68043cACEe43f8284D05a0C5D8663D5D44172367';
 	$: values = [];
 	$: points = [];
-	const provider = new ethers.providers.AlchemyProvider('rinkeby', apiKey);
+	const url = 'https://api.avax-test.network/ext/bc/C/rpc';
+	var provider = new ethers.providers.JsonRpcProvider(url);
+	// const provider = new ethers.providers.AlchemyProvider('rinkeby', apiKey);
 	const contract = new ethers.Contract(contractAddr, SPOTSAbi.abi, provider);
 	onMount(async () => {
 		async function getETHValues() {
