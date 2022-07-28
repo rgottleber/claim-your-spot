@@ -30,7 +30,7 @@ contract ClaimYourSpot is VRFConsumerBaseV2, ERC721, ERC721URIStorage {
 	// this limit based on the network that you select, the size of the request,
 	// and the processing of the callback request in the fulfillRandomWords()
 	// function.
-	uint32 callbackGasLimit = 200000;
+	uint32 callbackGasLimit = 999999;
 
 	// The default is 3, but you can set this higher.
 	uint16 requestConfirmations = 3;
@@ -62,6 +62,7 @@ contract ClaimYourSpot is VRFConsumerBaseV2, ERC721, ERC721URIStorage {
 		);
 	string tailSVG = '</svg>';
 	string bodySVG = '';
+	string lastCircle = '';
 	string[] colors = ['#3F5ACB', '#EA5D65', '#F0CD49', '#FFFFFF'];
 
 	struct CircleAttributes {
@@ -121,24 +122,22 @@ contract ClaimYourSpot is VRFConsumerBaseV2, ERC721, ERC721URIStorage {
 			})
 		);
 		if (circles.length > 1) {
-			for (uint256 i = 0; i < circles.length - 1; i += 1) {
-				bodySVG = string(
-					abi.encodePacked(
-						bodySVG,
-						"<circle cx='",
-						circles[i].x,
-						"' cy='",
-						circles[i].y,
-						"' r='",
-						circles[i].r,
-						"' fill='",
-						circles[i].fill,
-						"' />"
-					)
-				);
-			}
+			bodySVG = string(
+				abi.encodePacked(
+					bodySVG,
+					"<circle cx='",
+					circles[circles.length - 2].x,
+					"' cy='",
+					circles[circles.length - 2].y,
+					"' r='",
+					circles[circles.length - 2].r,
+					"' fill='",
+					circles[circles.length - 2].fill,
+					"' />"
+				)
+			);
 		}
-		bodySVG = string(
+		lastCircle = string(
 			abi.encodePacked(
 				bodySVG,
 				"<circle cx='",
@@ -153,7 +152,7 @@ contract ClaimYourSpot is VRFConsumerBaseV2, ERC721, ERC721URIStorage {
 				"' />"
 			)
 		);
-		string memory finalSVG = string(abi.encodePacked(headSVG, bodySVG, tailSVG));
+		string memory finalSVG = string(abi.encodePacked(headSVG, bodySVG, lastCircle, tailSVG));
 		string memory json = Base64.encode(
 			bytes(
 				string(
