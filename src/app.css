@@ -1,7 +1,23 @@
 /* Write your global styles here, in PostCSS syntax */
 @tailwind base;
-@tailwind base;
 @tailwind components;
 @tailwind utilities;
-@tailwind components;
-@tailwind utilities;
+
+svg {
+    width: 100%;
+}
+
+.pulse {
+    stroke-width: 50;
+    animation: circle_animation 3s linear infinite;
+}
+
+@keyframes circle_animation {
+    0% {}
+
+    50% {
+        r: 50;
+    }
+
+    100% {}
+}

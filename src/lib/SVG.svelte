@@ -8,45 +8,30 @@
 	export let width;
 	export let height;
 	// const contractAddr = '0xB6aC9165d7c9752E7C7D09b5282FBdb5EfE6e308';
-	const contractAddr = '0x68043cACEe43f8284D05a0C5D8663D5D44172367';
-	$: values = [];
-	$: points = [];
+	const contractAddr = '0x138eA4251835a9166B9538cC22F25C34A155C531';
+	$: image = '';
 	const url = 'https://api.avax-test.network/ext/bc/C/rpc';
 	var provider = new ethers.providers.JsonRpcProvider(url);
 	// const provider = new ethers.providers.AlchemyProvider('rinkeby', apiKey);
 	const contract = new ethers.Contract(contractAddr, SPOTSAbi.abi, provider);
 	onMount(async () => {
-		async function getETHValues() {
-			values = await contract.getAllSpots();
-			values.forEach((bigVal) => {
-				points.push({
-					x: bigVal.mod(width).toNumber(),
-					y: bigVal.mod(height).toNumber(),
-					r: bigVal.mod(8).toNumber() + 2,
-					fill: colors[bigVal.mod(4).toNumber()]
-				});
-			});
-			points = points;
-			contract.on('SpotClaimed', async () => {
-				getEthValues();
-			});
-
-			console.log('here', points);
-			console.log(values);
+		async function getSVG() {
+			image = await contract.getSVG();
 		}
 		async function ethListen() {
 			contract.on('SpotClaimed', async () => {
-				getETHValues();
+				getSVG();
 			});
 		}
 		ethListen();
-		getETHValues();
+		getSVG();
 	});
 </script>
 
 <svelte:window bind:innerWidth={width} bind:innerHeight={height} />
+{@html image}
 
-<svg viewBox="0 0 {width} {height}" preserveAspectRatio="xMidYMid meet">
+<!-- <svg viewBox="0 0 {width} {height}" preserveAspectRatio="xMidYMid meet">
 	<rect {width} {height} fill="#1A1B27" />
 	{#each points as point, i}
 		{#if i == points.length - 1}
@@ -56,23 +41,4 @@
 		{/if}
 		/>
 	{/each}
-</svg>
-
-<style>
-	svg {
-		width: 100%;
-	}
-	.pulse {
-		stroke-width: 50;
-		animation: circle_animation 3s linear infinite;
-	}
-	@keyframes circle_animation {
-		0% {
-		}
-		50% {
-			r: 50;
-		}
-		100% {
-		}
-	}
-</style>
+</svg> -->
