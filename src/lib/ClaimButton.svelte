@@ -36,6 +36,7 @@
 			<div class="card-body">
 				<h2 class="card-title">You've Claimed Your Spot!</h2>
 				<p>Congratulations! Look for the new pulsing spot on the grid</p>
+				<a class="btn" href="/">View Grid</a>
 			</div>
 		{/if}
 	</div>
