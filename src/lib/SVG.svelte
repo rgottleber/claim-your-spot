@@ -1,36 +1,30 @@
 <script>
 	import { ethers } from 'ethers';
-	import { onMount } from 'svelte';
-
-	// const apiKey = import.meta.env.VITE_RINKEBY_API_KEY;
-	const colors = ['#3F5ACB', '#EA5D65', '#F0CD49', '#FFFFFF'];
 	import SPOTSAbi from '../contracts/SPOTS.json';
-	export let width;
-	export let height;
 	// const contractAddr = '0xB6aC9165d7c9752E7C7D09b5282FBdb5EfE6e308';
-	const contractAddr = '0x138eA4251835a9166B9538cC22F25C34A155C531';
+	// const contractAddr = '0x138eA4251835a9166B9538cC22F25C34A155C531';
+	const contractAddr = '0xFD346e90644cbDc8a74Ea7E300cb32c6c7e4668D';
 	$: image = '';
-	const url = 'https://api.avax-test.network/ext/bc/C/rpc';
+	const url = 'https://goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161';
 	var provider = new ethers.providers.JsonRpcProvider(url);
 	// const provider = new ethers.providers.AlchemyProvider('rinkeby', apiKey);
 	const contract = new ethers.Contract(contractAddr, SPOTSAbi.abi, provider);
-	onMount(async () => {
-		async function getSVG() {
-			image = await contract.getSVG();
-		}
-		async function ethListen() {
-			contract.on('SpotClaimed', async () => {
-				getSVG();
-			});
-		}
-		ethListen();
-		getSVG();
-	});
+	async function getSVG() {
+		image = await contract.getSVG();
+		console.log(image);
+	}
+	async function ethListen() {
+		contract.on('SpotClaimed', async () => {
+			getSVG();
+		});
+	}
+	ethListen();
+	getSVG();
 </script>
 
-<svelte:window bind:innerWidth={width} bind:innerHeight={height} />
-{@html image}
-
+<div class="w-5/6">
+	<img src={image} alt="The NFT" class="w-auto h-auto" />
+</div>
 <!-- <svg viewBox="0 0 {width} {height}" preserveAspectRatio="xMidYMid meet">
 	<rect {width} {height} fill="#1A1B27" />
 	{#each points as point, i}
