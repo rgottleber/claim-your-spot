@@ -11,7 +11,7 @@
 		chainId: null,
 		contract: null
 	};
-	const contractAddr = '0x138eA4251835a9166B9538cC22F25C34A155C531';
+	const contractAddr = '0x3E8Bb76dc3aB7D86CEF28C0B0927AD16FC4EfD45';
 	async function switchChain() {
 		try {
 			// attempt to switch to Harmony One network
