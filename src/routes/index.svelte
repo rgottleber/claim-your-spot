@@ -6,13 +6,18 @@
 	<div class="xl:w-3/4">
 		<SVG />
 	</div>
-	<div class="xl:w-1/4 mx-4">
-		<div class="text-center text-6xl font-sans font-bold text-accent">
+	<div class="xl:w-1/4 xl:mx-4">
+		<div class="text-center pt-4 text-4xl xl:text-6xl font-sans font-bold text-accent">
 			The World's Most Collaborative NFT
 		</div>
-		<div class="flex justify-center pt-12 xl:pt-52"><img src="/qr.png" alt="qr code" /></div>
-		<div class="flex justify-center pt-12 xl:pt-24 font-sans text-2xl">
-			<span class="bg-secondary text-accent p-6">Scan To Participate</span>
+		<div class="hidden md:flex justify-center pt-8 xl:pt-52">
+			<img src="/qr.png" alt="qr code" />
+		</div>
+		<div class="flex justify-center pt-8 xl:pt-24 font-sans text-2xl">
+			<span class="bg-secondary hidden md:block text-accent p-6">Scan To Participate</span>
+			<span class="bg-secondary block md:hidden text-accent p-6">
+				<a href="/claim"><button> Click To Participate</button></a>
+			</span>
 		</div>
 	</div>
 </div>
