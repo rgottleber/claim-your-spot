@@ -7,18 +7,18 @@ module.exports = {
 	daisyui: {
 		themes: [
 			{
-				dracula: {
-					primary: '#f8f8f2',
-					secondary: '#9580FF',
-					accent: '#FFFF80',
-					accent2: '#FF80BF',
-					neutral: '#f8f8f2',
-					'base-100': '#22212C',
-					info: '#80FFEA',
-					success: '#8AFF80',
-					warning: '#FF80BF',
-					error: '#FF9580'
-				}
+				mytheme: {
+
+					primary: "#00ff93",
+					secondary: "#2163ff",
+					accent: "#ffffff",
+					neutral: "#1c1c1c",
+					'base-100': "#1c1c1c",
+					info: "#3ABFF8",
+					success: "#ff5e57",
+					warning: "#FBBD23",
+					error: "#F87272",
+				},
 			}
 		]
 	},

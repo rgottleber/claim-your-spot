@@ -23,17 +23,10 @@
 	getSVG();
 </script>
 
-<div class="w-5/6">
-	<img src={image} alt="The NFT" class="w-auto h-auto" />
-</div>
-<!-- <svg viewBox="0 0 {width} {height}" preserveAspectRatio="xMidYMid meet">
-	<rect {width} {height} fill="#1A1B27" />
-	{#each points as point, i}
-		{#if i == points.length - 1}
-			<circle cx={point.x} cy={point.y} class="pulse" r={point.r} fill={point.fill} />
-		{:else}
-			<circle cx={point.x} cy={point.y} r={point.r} fill={point.fill} />
-		{/if}
-		/>
-	{/each}
-</svg> -->
+<img src={image} alt="The NFT" class="w-full h-auto shadow-primary border-accent border-2" />
+
+<style>
+	img {
+		box-shadow: 7px 7px #00ff99;
+	}
+</style>
